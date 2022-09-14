@@ -9,6 +9,9 @@
         <title><?= $title ?> - Surya Kontruksindo Utama</title>
         <link rel="shortcut icon" href="<?= base_url('/assets/img/logo_square.jpg') ?>" type="image/x-icon">
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- DATATABLES -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         <!-- TOASTR -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -65,6 +68,14 @@
                 }
             }
         });
+        </script>
+        <!-- DATATABLES -->
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#example').DataTable();
+            });
         </script>
         <!-- TOASTR -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

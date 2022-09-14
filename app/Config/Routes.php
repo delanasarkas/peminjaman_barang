@@ -42,6 +42,12 @@ $routes->get('/login', 'Auth::index');
 $routes->post('/login/submit', 'Auth::submit');
 $routes->get('/logout', 'Auth::logout');
 
+// BARANG
+$routes->get('/barang', 'Barang::index');
+$routes->post('/barang-tambah', 'Barang::tambah');
+$routes->add('/barang-ubah/(:segment)', 'Barang::ubah/$1');
+$routes->get('/barang-hapus/(:segment)', 'Barang::hapus/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
