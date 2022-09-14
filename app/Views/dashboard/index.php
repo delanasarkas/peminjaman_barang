@@ -38,5 +38,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <canvas id="myChart" width="400" height="100"></canvas>
+            </div>
+        </div>
     </div>
 <?= $this->endSection() ?>
