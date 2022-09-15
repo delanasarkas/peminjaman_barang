@@ -6,7 +6,7 @@
             Dashboard
         </a>
         <?php if(session()->get('role') == 'master') : ?>
-        <a class="nav-link collapsed <?= $title == 'Barang' ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+        <a class="nav-link collapsed <?= $title == 'Barang' || $title == 'Kategori' || $title == 'Karyawan' ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
             Master Data
             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -14,8 +14,8 @@
         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
                 <a class="nav-link <?= $title == 'Barang' ? 'active' : '' ?>" href="<?= base_url('/barang') ?>">Barang</a>
-                <a class="nav-link" href="layout-sidenav-light.html">Kategori</a>
-                <a class="nav-link" href="layout-sidenav-light.html">Karyawan</a>
+                <a class="nav-link <?= $title == 'Kategori' ? 'active' : '' ?>" href="<?= base_url('/kategori') ?>">Kategori</a>
+                <a class="nav-link <?= $title == 'Karyawan' ? 'active' : '' ?>" href="<?= base_url('/karyawan') ?>">Karyawan</a>
             </nav>
         </div>
         <a class="nav-link" href="index.html">

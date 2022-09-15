@@ -48,6 +48,18 @@ $routes->post('/barang-tambah', 'Barang::tambah');
 $routes->add('/barang-ubah/(:segment)', 'Barang::ubah/$1');
 $routes->get('/barang-hapus/(:segment)', 'Barang::hapus/$1');
 
+// KATEGORI
+$routes->get('/kategori', 'Kategori::index');
+$routes->post('/kategori-tambah', 'Kategori::tambah');
+$routes->add('/kategori-ubah/(:segment)', 'Kategori::ubah/$1');
+$routes->get('/kategori-hapus/(:segment)', 'Kategori::hapus/$1');
+
+// KARYAWAN
+$routes->get('/karyawan', 'Karyawan::index');
+$routes->post('/karyawan-tambah', 'Karyawan::tambah');
+$routes->add('/karyawan-ubah/(:segment)', 'Karyawan::ubah/$1');
+$routes->get('/karyawan-hapus/(:segment)', 'Karyawan::hapus/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

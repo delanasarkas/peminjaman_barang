@@ -15,7 +15,7 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center">No</th>
                             <th>Nama Barang</th>
                             <th>Kategori</th>
                             <th>Qty</th>
@@ -27,7 +27,7 @@
                         <?php $i = 1; ?>
                         <?php foreach($barang_list as $data) : ?>
                         <tr>
-                            <td><?= $i++; ?></td>
+                            <td class="text-center"><?= $i++; ?></td>
                             <td><?= $data['nama_barang'] ?></td>
                             <td><?= $data['nama_kategori'] ?></td>
                             <td><?= $data['qty_barang'] ?></td>
@@ -94,7 +94,7 @@
                             <div class="modal-dialog modal-sm modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header bg-danger text-light">
-                                        <h5 class="modal-title" id="modalHapusBarangLabel">Ubah Barang</h5>
+                                        <h5 class="modal-title" id="modalHapusBarangLabel">Hapus Barang</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="<?= base_url('/barang-hapus'.'/'.$data['id_barang']); ?>" method="GET">
