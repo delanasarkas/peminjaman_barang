@@ -18,7 +18,7 @@ class Kategori extends BaseController
             return redirect()->back();
         } else {
             $kategoriModel = new KategoriModel();
-            $dataKategori = $kategoriModel->findAll();
+            $dataKategori = $kategoriModel->orderBy('id_kategori', 'DESC')->findAll();
 
             $data = [
 				'title' => 'Kategori',

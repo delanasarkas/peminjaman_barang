@@ -18,7 +18,7 @@
                 <a class="nav-link <?= $title == 'Karyawan' ? 'active' : '' ?>" href="<?= base_url('/karyawan') ?>">Karyawan</a>
             </nav>
         </div>
-        <a class="nav-link" href="index.html">
+        <a class="nav-link <?= $title == 'Aktivitas Karyawan' ? 'active' : '' ?>" href="<?= base_url('/activity-all') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
             Aktivitas User
         </a>

@@ -28,6 +28,23 @@ class Activity extends BaseController
         }
 	}
 
+    public function all()
+	{
+        if(is_null(session()->get('logged_in'))){
+            return redirect()->back();
+        } else {
+            $db = \Config\Database::connect();
+            $dataActivity = $db->query("SELECT a.id_log, a.keterangan_aktivitas, a.tgl_aktivitas, b.nama FROM activity_log a, users b WHERE a.id_users = b.id_users AND b.nama != 'master' ORDER BY a.id_log DESC")->getResult('array');
+
+            $data = [
+				'title' => 'Aktivitas Karyawan',
+                'data_activity' => $dataActivity,
+			];
+
+            return view('dashboard\activity\all', $data);
+        }
+	}
+
     public function tambah()
     {
         if(is_null(session()->get('logged_in'))){

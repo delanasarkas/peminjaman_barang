@@ -18,7 +18,7 @@ class Karyawan extends BaseController
             return redirect()->back();
         } else {
             $usersModel = new UsersModel();
-            $dataUsers = $usersModel->where('role !=', 'master')->findAll();
+            $dataUsers = $usersModel->where('role !=', 'master')->orderBy('id_users', 'DESC')->findAll();
 
             $data = [
 				'title' => 'Karyawan',

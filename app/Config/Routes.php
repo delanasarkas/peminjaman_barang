@@ -62,6 +62,7 @@ $routes->get('/karyawan-hapus/(:segment)', 'Karyawan::hapus/$1');
 
 // ACTIVITY
 $routes->get('/activity-single', 'Activity::single');
+$routes->get('/activity-all', 'Activity::all');
 
 /*
  * --------------------------------------------------------------------

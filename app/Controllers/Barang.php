@@ -22,7 +22,7 @@ class Barang extends BaseController
             $dataKategori = $kategoriModel->findAll();
 
             $db = \Config\Database::connect();
-            $dataBarang = $db->query("SELECT a.id_barang, a.nama_barang, a.qty_barang, a.deskripsi_barang, b.id_kategori, b.nama_kategori FROM barang a, kategori b WHERE a.id_kategori = b.id_kategori")->getResult('array');
+            $dataBarang = $db->query("SELECT a.id_barang, a.nama_barang, a.qty_barang, a.deskripsi_barang, b.id_kategori, b.nama_kategori FROM barang a, kategori b WHERE a.id_kategori = b.id_kategori ORDER BY a.id_barang DESC")->getResult('array');
 
             $data = [
 				'title' => 'Barang',
