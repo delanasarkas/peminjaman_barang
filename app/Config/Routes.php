@@ -64,6 +64,9 @@ $routes->get('/karyawan-hapus/(:segment)', 'Karyawan::hapus/$1');
 $routes->get('/activity-single', 'Activity::single');
 $routes->get('/activity-all', 'Activity::all');
 
+// PERMINTAAN
+$routes->post('/permintaan-by-id', 'Permintaan::tambah_by_id');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

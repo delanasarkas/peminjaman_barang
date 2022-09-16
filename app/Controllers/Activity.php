@@ -17,7 +17,7 @@ class Activity extends BaseController
         if(is_null(session()->get('logged_in'))){
             return redirect()->back();
         } else {
-            $dataActivity = $this->activityModel->where('id_users', session()->get('id_users'))->orderBy('tgl_aktivitas', 'DESC')->findAll();
+            $dataActivity = $this->activityModel->where('id_users', session()->get('id_users'))->orderBy('id_log', 'DESC')->findAll();
 
             $data = [
 				'title' => 'Aktivitas Anda',
