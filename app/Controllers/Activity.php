@@ -5,27 +5,26 @@ use App\Controllers\BaseController;
 use App\Models\KategoriModel;
 use App\Models\ActivitylogModel;
 
-class Kategori extends BaseController
+class Activity extends BaseController
 {
     public function __construct()
     {
         $this->activityModel = new ActivitylogModel();
     }
 
-	public function index()
+	public function single()
 	{
         if(is_null(session()->get('logged_in'))){
             return redirect()->back();
         } else {
-            $kategoriModel = new KategoriModel();
-            $dataKategori = $kategoriModel->findAll();
+            $dataActivity = $this->activityModel->where('id_users', session()->get('id_users'))->orderBy('tgl_aktivitas', 'DESC')->findAll();
 
             $data = [
-				'title' => 'Kategori',
-                'kategori_list' => $dataKategori,
+				'title' => 'Aktivitas Anda',
+                'data_activity' => $dataActivity,
 			];
 
-            return view('dashboard\kategori\index', $data);
+            return view('dashboard\activity\single', $data);
         }
 	}
 

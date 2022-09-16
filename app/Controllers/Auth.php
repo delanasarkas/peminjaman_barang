@@ -3,9 +3,15 @@
 namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
+use App\Models\ActivitylogModel;
 
 class Auth extends BaseController
 {
+    public function __construct()
+    {
+        $this->activityModel = new ActivitylogModel();
+    }
+
 	public function index()
 	{
         if(session()->get('logged_in')){
@@ -35,6 +41,13 @@ class Auth extends BaseController
                 'status' => $dataUser['status'],
                 'logged_in' => TRUE
             ]);
+
+            $this->activityModel->save([
+                'id_users' => session()->get('id_users'),
+                'keterangan_aktivitas' => 'Melakukan login',
+                'tgl_aktivitas' => date('Y-m-d H:i:s'),
+            ]);
+            
             session()->setFlashdata('success', 'Anda berhasil login');
             return redirect()->to('/');
         } else {

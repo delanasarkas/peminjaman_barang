@@ -4,9 +4,15 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\KategoriModel;
 use App\Models\BarangModel;
+use App\Models\ActivitylogModel;
 
 class Barang extends BaseController
 {
+    public function __construct()
+    {
+        $this->activityModel = new ActivitylogModel();
+    }
+
 	public function index()
 	{
         if(is_null(session()->get('logged_in'))){
@@ -47,6 +53,12 @@ class Barang extends BaseController
                 'qty_barang' => $qty,
                 'deskripsi_barang' => $deskripsi,
             ]);
+
+            $this->activityModel->save([
+                'id_users' => session()->get('id_users'),
+                'keterangan_aktivitas' => 'Menambah data barang '. $nama_barang,
+                'tgl_aktivitas' => date('Y-m-d H:i:s'),
+            ]);
     
             session()->setFlashdata('success', 'Tambah barang berhasil');
             return redirect()->to('/barang');
@@ -70,6 +82,12 @@ class Barang extends BaseController
             'deskripsi_barang' => $deskripsi,
         ]);
 
+        $this->activityModel->save([
+            'id_users' => session()->get('id_users'),
+            'keterangan_aktivitas' => 'Mengubah data barang dengan id '. $id,
+            'tgl_aktivitas' => date('Y-m-d H:i:s'),
+        ]);
+
         session()->setFlashdata('success', 'Ubah barang berhasil');
         return redirect()->to('/barang');
     }
@@ -79,6 +97,12 @@ class Barang extends BaseController
         $barangModel = new BarangModel();
 
         $barangModel->delete($id);
+
+        $this->activityModel->save([
+            'id_users' => session()->get('id_users'),
+            'keterangan_aktivitas' => 'Menghapus data barang dengan id '. $id,
+            'tgl_aktivitas' => date('Y-m-d H:i:s'),
+        ]);
 
         session()->setFlashdata('success', 'Barang berhasil di hapus');
         return redirect()->to('/barang');

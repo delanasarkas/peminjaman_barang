@@ -3,9 +3,15 @@
 namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
+use App\Models\ActivitylogModel;
 
 class Karyawan extends BaseController
 {
+    public function __construct()
+    {
+        $this->activityModel = new ActivitylogModel();
+    }
+
 	public function index()
 	{
         if(is_null(session()->get('logged_in'))){
@@ -48,6 +54,12 @@ class Karyawan extends BaseController
                 'status' => $status,
                 'password' => $password,
             ]);
+
+            $this->activityModel->save([
+                'id_users' => session()->get('id_users'),
+                'keterangan_aktivitas' => 'Menambah data karyawan '. $nama,
+                'tgl_aktivitas' => date('Y-m-d H:i:s'),
+            ]);
     
             session()->setFlashdata('success', 'Tambah karyawan berhasil');
             return redirect()->to('/karyawan');
@@ -77,6 +89,12 @@ class Karyawan extends BaseController
             'password' => $password,
         ]);
 
+        $this->activityModel->save([
+            'id_users' => session()->get('id_users'),
+            'keterangan_aktivitas' => 'Mengubah data karyawan dengan id '. $id,
+            'tgl_aktivitas' => date('Y-m-d H:i:s'),
+        ]);
+
         session()->setFlashdata('success', 'Ubah karyawan berhasil');
         return redirect()->to('/karyawan');
     }
@@ -86,6 +104,12 @@ class Karyawan extends BaseController
         $usersModel = new UsersModel();
 
         $usersModel->delete($id);
+
+        $this->activityModel->save([
+            'id_users' => session()->get('id_users'),
+            'keterangan_aktivitas' => 'Menghapus data karyawan dengan id '. $id,
+            'tgl_aktivitas' => date('Y-m-d H:i:s'),
+        ]);
 
         session()->setFlashdata('success', 'Karyawan berhasil di hapus');
         return redirect()->to('/karyawan');

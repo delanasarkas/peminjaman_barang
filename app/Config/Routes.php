@@ -60,6 +60,9 @@ $routes->post('/karyawan-tambah', 'Karyawan::tambah');
 $routes->add('/karyawan-ubah/(:segment)', 'Karyawan::ubah/$1');
 $routes->get('/karyawan-hapus/(:segment)', 'Karyawan::hapus/$1');
 
+// ACTIVITY
+$routes->get('/activity-single', 'Activity::single');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
