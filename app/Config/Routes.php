@@ -65,7 +65,13 @@ $routes->get('/activity-single', 'Activity::single');
 $routes->get('/activity-all', 'Activity::all');
 
 // PERMINTAAN
+$routes->get('/permintaan', 'Permintaan::index');
+$routes->post('/permintaan-tambah', 'Permintaan::tambah');
 $routes->post('/permintaan-by-id', 'Permintaan::tambah_by_id');
+$routes->add('/permintaan-kelola/(:segment)', 'Permintaan::kelola/$1');
+$routes->add('/permintaan-ulang/(:segment)', 'Permintaan::ulang/$1');
+$routes->add('/permintaan-batal/(:segment)', 'Permintaan::batal/$1');
+$routes->get('/permintaan-hapus/(:segment)', 'Permintaan::hapus/$1');
 
 /*
  * --------------------------------------------------------------------

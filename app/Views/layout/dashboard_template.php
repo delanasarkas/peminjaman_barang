@@ -15,6 +15,11 @@
         <!-- TOASTR -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <!-- SELECT2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -38,6 +43,23 @@
         <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
+        <!-- MOMENT -->
+        <script src="<?= base_url('/js/moment.js') ?>"></script>
+        <script>
+            $( document ).ready(function() {
+                let a = moment().format('HH');
+
+                if(a > 00) {
+                    $('#time_users').text('Selamat Pagi');
+                } else if(a > 10) {
+                    $('#time_users').text('Selamat Siang');
+                } else if(a > 15) {
+                    $('#time_users').text('Selamat Sore');
+                } else if(a > 18) {
+                    $('#time_users').text('Selamat Malam');
+                }
+            });
+        </script>
         <!-- CHARTJS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
         <script>
@@ -77,6 +99,17 @@
                 $('#example').DataTable();
             });
         </script>
+        <!-- SELECT2 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+        <script>
+            $( '#basic-usage' ).select2( {
+                theme: "bootstrap-5",
+                width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+                placeholder: $( this ).data( 'placeholder' ),
+                dropdownParent: $("#modalTambahRequest")
+            } );
+        </script>
         <!-- TOASTR -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script type="text/javascript">
@@ -107,6 +140,15 @@
             <?php }else if(session()->get('info')){  ?>
                 toastr.info("<?= session()->get('info'); ?>");
             <?php } ?>
+        </script>
+
+        <!-- CUSTOM -->
+        <script>
+            function setMaxSum() {
+                var val = $("#basic-usage");
+                var jumlahMax = val.children(":selected").attr("id");
+                return $('#jumlah').attr('max', jumlahMax);
+            }
         </script>
     </body>
 </html>

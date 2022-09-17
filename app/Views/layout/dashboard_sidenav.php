@@ -25,14 +25,14 @@
         <?php endif; ?>
 
         <?php if(session()->get('role') != 'master') : ?>
-        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
+        <a class="nav-link collapsed <?= $title == 'Permintaan' || $title == 'Peminjaman' ? 'active' : '' ?>" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts2">
             <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
             Proses
             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
         </a>
         <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="layout-static.html">Permintaan</a>
+                <a class="nav-link <?= $title == 'Permintaan' ? 'active' : '' ?>" href="<?= base_url('/permintaan') ?>">Permintaan</a>
                 <a class="nav-link" href="layout-sidenav-light.html">Peminjaman</a>
             </nav>
         </div>
