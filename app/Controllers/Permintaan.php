@@ -5,6 +5,7 @@ use App\Controllers\BaseController;
 use App\Models\PermintaanModel;
 use App\Models\ActivitylogModel;
 use App\Models\BarangModel;
+use App\Models\PeminjamanModel;
 
 class Permintaan extends BaseController
 {
@@ -150,6 +151,7 @@ class Permintaan extends BaseController
         } else {
             $permintaanModel = new PermintaanModel();
             $barangModel = new BarangModel();
+            $peminjamanModel = new PeminjamanModel();
 
             // GET FIELD VALUE
             $status_selected = $this->request->getVar('status_selected');
@@ -166,6 +168,11 @@ class Permintaan extends BaseController
 
                 $barangModel->update($id_barang, [
                     'qty_barang' => $parseJumlahBarang
+                ]);
+            } else {
+                $peminjamanModel->save([
+                    'id_permintaan' => $id, 
+                    'tgl_diterima' => date('Y-m-d H:i:s'), 
                 ]);
             }
 

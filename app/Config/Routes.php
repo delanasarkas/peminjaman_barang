@@ -73,6 +73,13 @@ $routes->add('/permintaan-ulang/(:segment)', 'Permintaan::ulang/$1');
 $routes->add('/permintaan-batal/(:segment)', 'Permintaan::batal/$1');
 $routes->get('/permintaan-hapus/(:segment)', 'Permintaan::hapus/$1');
 
+// PEMINJAMAN
+$routes->get('/peminjaman', 'Peminjaman::index');
+$routes->post('/peminjaman-alihkan/(:segment)', 'Peminjaman::alihkan/$1');
+$routes->post('/peminjaman-kelola/(:segment)', 'Peminjaman::kelola/$1');
+$routes->post('/peminjaman-batal/(:segment)', 'Peminjaman::batal/$1');
+$routes->post('/peminjaman-selesai/(:segment)', 'Peminjaman::selesai/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
