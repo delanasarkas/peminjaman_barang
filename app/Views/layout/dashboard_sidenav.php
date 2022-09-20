@@ -39,7 +39,7 @@
         <?php endif; ?>
 
         <?php if(session()->get('role') == 'admin') : ?>
-        <a class="nav-link" href="index.html">
+        <a class="nav-link <?= $title == 'Laporan' ? 'active' : '' ?>" href="<?= base_url('/laporan') ?>">
             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
             Laporan
         </a>

@@ -80,6 +80,9 @@ $routes->post('/peminjaman-kelola/(:segment)', 'Peminjaman::kelola/$1');
 $routes->post('/peminjaman-batal/(:segment)', 'Peminjaman::batal/$1');
 $routes->post('/peminjaman-selesai/(:segment)', 'Peminjaman::selesai/$1');
 
+// LAPORAN
+$routes->get('/laporan', 'Laporan::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

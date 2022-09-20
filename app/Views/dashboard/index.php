@@ -71,6 +71,7 @@
                 $('#grafik_peminjaman').addClass('d-none');
                 $('#grafik_barang').addClass('d-none');
                 $('#grafik_karyawan').removeClass('d-none');
+                $('#grafik_karyawan').addClass('d-none');
             } else if(type == 'barang') {
                 $('#grafik_peminjaman').addClass('d-none');
                 $('#grafik_karyawan').addClass('d-none');
