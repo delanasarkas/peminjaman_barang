@@ -49,7 +49,7 @@
             $( document ).ready(function() {
                 let a = moment().format('HH');
 
-                if(a > 00) {
+                if(a > 23) {
                     $('#time_users').text('Selamat Pagi');
                 } else if(a > 10) {
                     $('#time_users').text('Selamat Siang');
@@ -62,35 +62,112 @@
         </script>
         <!-- CHARTJS -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-        <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Barang Dipinjam', 'Barang Dikembalikan'],
-                datasets: [{
-                    label: 'Grafik Peminjaman',
-                    data: [12, 19],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        <?php if($title == 'Dashboard' && session()->get('role') != 'teknisi') : ?>
+            <script>
+            const ctx = document.getElementById('chart_peminjaman').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Barang Dipinjam', 'Barang Dikembalikan'],
+                    datasets: [{
+                        label: '',
+                        data: [<?= $count_dipinjam ?>, <?= $count_dikembalikan ?>],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                        display: false
+                        }
                     }
                 }
-            }
-        });
-        </script>
+            });
+
+            const ctx2 = document.getElementById('chart_karyawan').getContext('2d');
+            const myChart2 = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        <?php foreach($grafik_karyawans as $data) : ?>
+                            "<?= $data['nama'] ?>",
+                        <?php endforeach; ?>
+                    ],
+                    datasets: [{
+                        label: '',
+                        data: [
+                            <?php foreach($grafik_karyawans as $data) : ?>
+                                "<?= $data['jumlah'] ?>",
+                            <?php endforeach; ?>
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                        display: false
+                        }
+                    }
+                }
+            });
+
+            const ctx3 = document.getElementById('chart_barang').getContext('2d');
+            const myChart3 = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        <?php foreach($grafik_barangs as $data) : ?>
+                            "<?= $data['nama_barang'] ?>",
+                        <?php endforeach; ?>
+                    ],
+                    datasets: [{
+                        label: '',
+                        data: [
+                            <?php foreach($grafik_barangs as $data) : ?>
+                                "<?= $data['qty_barang'] ?>",
+                            <?php endforeach; ?>
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                        display: false
+                        }
+                    }
+                }
+            });
+            </script>
+        <?php endif; ?>
         <!-- DATATABLES -->
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -112,7 +189,7 @@
                 theme: "bootstrap-5",
                 width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
                 placeholder: $( this ).data( 'placeholder' ),
-                dropdownParent: $(".modal-alihkan")
+                dropdownParent: $(".modalAlihkan")
             });
         </script>
         <!-- TOASTR -->

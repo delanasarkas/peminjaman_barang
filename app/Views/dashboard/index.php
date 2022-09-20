@@ -2,50 +2,86 @@
 
 <?= $this->section('content') ?>
     <?php if(session()->get('role') != 'teknisi') : ?>
+    <style>
+        .card-click {
+            cursor: pointer;
+        }
+
+        .card-click:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
     <div class="container-fluid px-4">
         <h1 class="mt-4 mb-4"><?= $title ?></h1>
 
         <div class="row">
             <div class="col-lg-3 mb-2">
-                <div class="card">
+                <div class="card card-click" onclick="viewGrafik('karyawan')">
+                    <div class="card-body text-center">
+                        <h5>Total Teknisi</h5>
+                        <h3><?= $count_teknisi ?></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-2">
+                <div class="card card-click" onclick="viewGrafik('barang')">
                     <div class="card-body text-center">
                         <h5>Total Barang</h5>
-                        <h3>12</h3>
+                        <h3><?= $count_barang; ?></h3>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 mb-2">
-                <div class="card">
+                <div class="card card-click" onclick="viewGrafik('peminjaman')">
                     <div class="card-body text-center">
-                        <h5>Total Karyawan</h5>
-                        <h3>12</h3>
+                        <h5>Peminjaman</h5>
+                        <h3><?= $count_dipinjam; ?></h3>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 mb-2">
-                <div class="card">
+                <div class="card card-click" onclick="viewGrafik('peminjaman')">
                     <div class="card-body text-center">
-                        <h5>Barang Dipinjam</h5>
-                        <h3>12</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-2">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5>Barang Kembali</h5>
-                        <h3>12</h3>
+                        <h5>Selesai</h5>
+                        <h3><?= $count_dikembalikan; ?></h3>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-lg-12">
-                <canvas id="myChart" width="400" height="150"></canvas>
+            <div class="col-lg-12" id="grafik_peminjaman">
+                <h5>Grafik Peminjaman & Selesai Hari ini</h5>
+                <canvas id="chart_peminjaman" width="400" height="150"></canvas>
+            </div>
+            <div class="col-lg-12 d-none" id="grafik_karyawan">
+                <h5>Grafik Teknisi Pinjam Barang</h5>
+                <canvas id="chart_karyawan" width="400" height="150"></canvas>
+            </div>
+            <div class="col-lg-12 d-none" id="grafik_barang">
+                <h5>Grafik Barang Berdasarkan Qty</h5>
+                <canvas id="chart_barang" width="400" height="150"></canvas>
             </div>
         </div>
     </div>
+
+    <script>
+        function viewGrafik(type) {
+            if(type == 'karyawan') {
+                $('#grafik_peminjaman').addClass('d-none');
+                $('#grafik_barang').addClass('d-none');
+                $('#grafik_karyawan').removeClass('d-none');
+            } else if(type == 'barang') {
+                $('#grafik_peminjaman').addClass('d-none');
+                $('#grafik_karyawan').addClass('d-none');
+                $('#grafik_barang').removeClass('d-none');
+            } else {
+                $('#grafik_karyawan').addClass('d-none');
+                $('#grafik_barang').addClass('d-none');
+                $('#grafik_peminjaman').removeClass('d-none');
+            }
+        }
+    </script>
     <?php else : ?>
         <div class="container-fluid px-4">
             <h1 class="mt-4 mb-4">

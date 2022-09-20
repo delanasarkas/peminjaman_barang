@@ -191,6 +191,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="password" name="password" placeholder="" required>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-transparent" data-bs-dismiss="modal">Tutup</button>

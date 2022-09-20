@@ -61,7 +61,11 @@
                                 <?php if($data['status'] == 'diterima' || $data['status'] == 'proses dialihkan' || $data['status'] == 'dialihkan' || $data['status'] == 'dialihkan' || $data['status'] == 'tolak dialihkan') : ?>
                                     <?php if(session()->get('role') == 'teknisi') : ?>
                                         <?php if($data['status'] == 'diterima' || $data['status'] == 'tolak dialihkan') : ?>
-                                            <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modalAlihkan-<?= $data['id_peminjaman'] ?>">Alihkan</button>
+                                            <?php if($data['user'] == session()->get('id_users')) : ?>
+                                                <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modalAlihkan-<?= $data['id_peminjaman'] ?>">Alihkan</button>
+                                            <?php else : ?>
+                                                -
+                                            <?php endif; ?>
                                         <?php elseif($data['status'] != 'dialihkan') : ?>
                                             <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modalBatal-<?= $data['id_peminjaman'] ?>">Batal</button>
                                         <?php else : ?>
@@ -124,7 +128,7 @@
                         </div>
 
                         <!-- MODAL ALIHKAN -->
-                        <div class="modal fade modal-alihkan" id="modalAlihkan-<?= $data['id_peminjaman'] ?>" tabindex="-1" aria-labelledby="modalAlihkanLabel" aria-hidden="true">
+                        <div class="modal fade modalAlihkan" id="modalAlihkan-<?= $data['id_peminjaman'] ?>" aria-labelledby="modalAlihkanLabel">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -134,9 +138,9 @@
                                     <form action="<?= base_url('/peminjaman-alihkan'.'/'.$data['id_peminjaman']); ?>" method="POST">
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="basic-usage" class="form-label">Pilih nama yang ingin di alihkan</label>
-                                                <select class="form-select" id="basic-usage2" name="id_users" data-placeholder="Pilih" required>
-                                                    <option></option>
+                                                <label for="basic-usage2" class="form-label">Pilih nama yang ingin di alihkan</label>
+                                                <select class="form-select" name="id_users" data-placeholder="Pilih" required>
+                                                    <option value="">Pilih</option>
                                                     <?php foreach($data_users as $data2) : ?>
                                                         <option value="<?= $data2['id_users'] ?>"><span class="text-capitalize"><?= $data2['nama'] ?></span></option>
                                                     <?php endforeach; ?>

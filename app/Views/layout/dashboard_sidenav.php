@@ -13,8 +13,8 @@
         </a>
         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link <?= $title == 'Barang' ? 'active' : '' ?>" href="<?= base_url('/barang') ?>">Barang</a>
                 <a class="nav-link <?= $title == 'Kategori' ? 'active' : '' ?>" href="<?= base_url('/kategori') ?>">Kategori</a>
+                <a class="nav-link <?= $title == 'Barang' ? 'active' : '' ?>" href="<?= base_url('/barang') ?>">Barang</a>
                 <a class="nav-link <?= $title == 'Karyawan' ? 'active' : '' ?>" href="<?= base_url('/karyawan') ?>">Karyawan</a>
             </nav>
         </div>
