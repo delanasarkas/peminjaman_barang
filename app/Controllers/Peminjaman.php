@@ -20,6 +20,10 @@ class Peminjaman extends BaseController
         if(is_null(session()->get('logged_in'))){
             return redirect()->back();
         } else {
+            if(session()->get('role') == 'master') {
+                return redirect()->back();
+            }
+            
             $usersModel = new UsersModel();
             $db = \Config\Database::connect();
             $dataPeminjaman;

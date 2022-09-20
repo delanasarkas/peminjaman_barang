@@ -17,6 +17,10 @@ class Karyawan extends BaseController
         if(is_null(session()->get('logged_in'))){
             return redirect()->back();
         } else {
+            if(session()->get('role') != 'master') {
+                return redirect()->back();
+            }
+            
             $usersModel = new UsersModel();
             $dataUsers = $usersModel->where('role !=', 'master')->orderBy('id_users', 'DESC')->findAll();
 

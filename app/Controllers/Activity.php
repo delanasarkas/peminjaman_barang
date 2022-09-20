@@ -33,6 +33,10 @@ class Activity extends BaseController
         if(is_null(session()->get('logged_in'))){
             return redirect()->back();
         } else {
+            if(session()->get('role') != 'master') {
+                return redirect()->back();
+            }
+            
             $db = \Config\Database::connect();
             $dataActivity = $db->query("SELECT a.id_log, a.keterangan_aktivitas, a.tgl_aktivitas, b.nama FROM activity_log a, users b WHERE a.id_users = b.id_users AND b.nama != 'master' ORDER BY a.id_log DESC")->getResult('array');
 
