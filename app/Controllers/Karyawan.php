@@ -20,7 +20,7 @@ class Karyawan extends BaseController
             if(session()->get('role') != 'master') {
                 return redirect()->back();
             }
-            
+
             $usersModel = new UsersModel();
             $dataUsers = $usersModel->where('role !=', 'master')->orderBy('id_users', 'DESC')->findAll();
 
@@ -83,15 +83,26 @@ class Karyawan extends BaseController
         $status = $this->request->getVar('status');
         $password = md5($this->request->getVar('password'));
 
-        $usersModel->update($id, [
-            'nama' => $nama,
-            'email' => $email,
-            'no_telepon' => $no_telepon,
-            'alamat' => $alamat,
-            'role' => $role,
-            'status' => $status,
-            'password' => $password,
-        ]);
+        if(empty($password)) {
+            $usersModel->update($id, [
+                'nama' => $nama,
+                'email' => $email,
+                'no_telepon' => $no_telepon,
+                'alamat' => $alamat,
+                'role' => $role,
+                'status' => $status,
+            ]);
+        } else {
+            $usersModel->update($id, [
+                'nama' => $nama,
+                'email' => $email,
+                'no_telepon' => $no_telepon,
+                'alamat' => $alamat,
+                'role' => $role,
+                'status' => $status,
+                'password' => $password,
+            ]);
+        }
 
         $this->activityModel->save([
             'id_users' => session()->get('id_users'),

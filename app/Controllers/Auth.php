@@ -31,6 +31,11 @@ class Auth extends BaseController
             'password' => md5($password)
         ])->first();
         if ($dataUser) {
+            if($dataUser['status'] == '0') {
+                session()->setFlashdata('error', 'Akun sedang tidak aktif');
+                return redirect()->back();
+            }
+
             session()->set([
                 'id_users' => $dataUser['id_users'],
                 'nama' => $dataUser['nama'],
