@@ -20,6 +20,7 @@
                             <th>Kategori</th>
                             <th>Qty</th>
                             <th>Deskripsi</th>
+                            <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,6 +33,15 @@
                             <td><?= $data['nama_kategori'] ?></td>
                             <td><?= $data['qty_barang'] ?></td>
                             <td><?= $data['deskripsi_barang'] ?></td>
+                            <td>
+                                <?php if($data['gambar'] != null) : ?>
+                                    <a href="<?= base_url('assets/barang/'.$data['gambar']) ?>" data-lightbox="roadtrip">
+                                        <img src="<?= base_url('assets/barang/'.$data['gambar']) ?>" alt="<?= $data['nama_barang'] ?>" style="width: 50px">    
+                                    </a>
+                                <?php else : ?>
+                                    -
+                                <?php endif; ?>
+                            </td>
                             <td>
                                 <button class="btn btn-secondary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modalUbahBarang-<?= $data['id_barang'] ?>">Ubah</button>
                                 <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modalHapusBarang-<?= $data['id_barang'] ?>">Hapus</button>
@@ -46,7 +56,7 @@
                                         <h5 class="modal-title" id="modalUbahBarangLabel">Ubah Barang</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="<?= base_url('/barang-ubah'.'/'.$data['id_barang']); ?>" method="POST">
+                                    <form action="<?= base_url('/barang-ubah'.'/'.$data['id_barang']); ?>" enctype='multipart/form-data' method="POST">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-6">
@@ -78,6 +88,13 @@
                                             <div class="mb-3">
                                                 <label for="deskripsi" class="form-label">Deksripsi</label>
                                                 <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required><?= $data['deskripsi_barang'] ?></textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="gambar" class="form-label">Gambar</label>
+                                                <input type="file" class="form-control" id="gambar" name="gambar">
+                                                <input type="hidden" class="form-control" id="gambar_old" name="gambar_old" value="<?= $data['gambar'] ?>">
+                                                <small>Upload gambar jika ingin diubah.</small>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -124,7 +141,7 @@
                     <h5 class="modal-title" id="modalTambahBarangLabel">Tambah Barang</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="<?= base_url('/barang-tambah') ?>" method="POST">
+                <form action="<?= base_url('/barang-tambah') ?>" enctype='multipart/form-data' method="POST">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6">
@@ -156,6 +173,11 @@
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deksripsi</label>
                             <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="gambar" class="form-label">Gambar</label>
+                            <input type="file" class="form-control" id="gambar" name="gambar" placeholder="" required>
                         </div>
                     </div>
                     <div class="modal-footer">

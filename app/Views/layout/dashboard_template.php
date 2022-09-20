@@ -9,6 +9,8 @@
         <title><?= $title ?> - Surya Kontruksindo Utama</title>
         <link rel="shortcut icon" href="<?= base_url('/assets/img/logo_square.jpg') ?>" type="image/x-icon">
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- LIGHTBOX -->
+        <link rel="stylesheet" href="<?= base_url('/css/lightbox.css') ?>">
         <!-- DATATABLES -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
@@ -193,6 +195,8 @@
                 });
             });
         </script>
+        <!-- LIGHTBOX -->
+        <script src="<?= base_url('/js/lightbox.js') ?>"></script>
         <!-- SELECT2 -->
         <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
         <script>

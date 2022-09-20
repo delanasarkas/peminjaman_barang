@@ -15,5 +15,6 @@ class BarangModel extends Model
         'nama_barang',
         'qty_barang',
         'deskripsi_barang',
+        'gambar'
     ];
 }
